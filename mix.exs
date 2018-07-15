@@ -6,9 +6,18 @@ defmodule Matrix.Mixfile do
      version: "0.3.1",
      description: description(),
      package: package(),
-     elixir: "~> 1.1",
+     elixir: "~> 1.6",
+     compilers: [:rustler] ++ Mix.compilers,
+     rustler_crates: rustler_crates(),
      deps: deps(),
      docs: [extras: []]]
+  end
+
+  defp rustler_crates() do
+    [matrix_nif: [
+      path: "native/matrix_nif",
+      mode: :release,
+    ]]
   end
 
   # Configuration for the OTP application
@@ -20,7 +29,8 @@ defmodule Matrix.Mixfile do
 
   defp deps do
     [{:ex_doc, "~> 0.14", only: :dev},
-     {:exprintf, "~> 0.1"}]
+     {:exprintf, "~> 0.1"},
+     {:rustler, "~> 0.18.0"}]
   end
 
   defp description do
