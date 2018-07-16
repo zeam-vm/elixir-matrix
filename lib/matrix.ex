@@ -381,7 +381,12 @@ defmodule Matrix do
       [[1, 3, 5], [2, 4, 6]]
   """
   @spec transpose(matrix) :: matrix
-  def transpose(m), do: MatrixNif.transpose(m)
+  def transpose(m) do
+    :ok = MatrixNif.transpose(m)
+    receive do
+      l -> l
+    end
+  end
   # def transpose(m) do
   #   swap_rows_cols(m)
   # end
