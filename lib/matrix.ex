@@ -381,16 +381,17 @@ defmodule Matrix do
       [[1, 3, 5], [2, 4, 6]]
   """
   @spec transpose(matrix) :: matrix
-  def transpose(m) do
-    swap_rows_cols(m)
-  end
+  def transpose(m), do: MatrixNif.transpose(m)
+  # def transpose(m) do
+  #   swap_rows_cols(m)
+  # end
 
-  defp swap_rows_cols( [h|_t] ) when h==[], do: []
-  defp swap_rows_cols(rows) do
-    firsts = Enum.map(rows, fn(x) -> hd(x) end) # first element of each row
-    rest = Enum.map(rows, fn(x) -> tl(x) end)   # remaining elements of each row
-    [firsts | swap_rows_cols(rest)]
-  end
+  # defp swap_rows_cols( [h|_t] ) when h==[], do: []
+  # defp swap_rows_cols(rows) do
+  #   firsts = Enum.map(rows, fn(x) -> hd(x) end) # first element of each row
+  #   rest = Enum.map(rows, fn(x) -> tl(x) end)   # remaining elements of each row
+  #   [firsts | swap_rows_cols(rest)]
+  # end
 
 
 
