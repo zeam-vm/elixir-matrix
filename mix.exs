@@ -3,7 +3,7 @@ defmodule Matrix.Mixfile do
 
   def project do
     [app: :matrix,
-     version: "0.3.2.1",
+     version: "0.3.3",
      description: description(),
      package: package(),
      elixir: "~> 1.6",
